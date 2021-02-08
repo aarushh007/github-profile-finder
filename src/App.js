@@ -7,8 +7,15 @@ const App = () => {
         fetch(`https://api.github.com/users/aarushh007`).then((res)=>res.json()).then((data)=>{setUser(data)})
     },[])
     const setUser = (data) => {
-        setName(data.login);
-        setImg(data.avatar_url);
+        if (data.login !== undefined){
+            setName(data.login);
+            setImg(data.avatar_url);
+        } else {
+            setName('User Not Found');
+            setImg('https://media.istockphoto.com/vectors/sad-face-icon-unhappy-face-symbol-vector-id934714316?k=6&m=934714316&s=170667a&w=0&h=5Tn4NDO6HAvElaTn3KrZ9YrncMzJ4B7Vo3c_IlWNPcc=');
+        }
+        
+        
     }
     const search = () => {
         let val = document.getElementById('name').value;
